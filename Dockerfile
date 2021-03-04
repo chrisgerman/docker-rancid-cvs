@@ -5,11 +5,10 @@ RUN adduser -D -s /bin/sh rancid
 RUN apk add --no-cache --virtual .builddeps build-base alpine-sdk autoconf automake gcc make
 RUN  cd /usr/bin && ln -s aclocal aclocal-1.14 && ln -s automake automake-1.14 && \
      cd /root && \
-# Downloading the lastest from UPSTREAM
+     chown -R rancid /home/rancid && \
      wget https://shrubbery.net/pub/rancid/rancid-3.13.tar.gz && \
      tar xzf rancid-*.tar.gz && \
      cd rancid-3.13/ && \
-     chown -R rancid /home/rancid && \
      ./configure --prefix=/home/rancid --mandir=/usr/share/man --bindir=/usr/bin --sbindir=/usr/sbin --sysconfdir=/etc/rancid --datarootdir=/usr/share && \
      make install
 # 
