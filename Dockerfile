@@ -10,7 +10,7 @@ RUN  cd /usr/bin && ln -s aclocal aclocal-1.14 && ln -s automake automake-1.14 &
      tar xzf rancid-*.tar.gz && \
      cd rancid-3.13/ && \
      chown -R rancid /home/rancid && \
-     ./configure --prefix=/home/rancid --mandir=/usr/share/man --bindir=/usr/bin --sbindir=/usr/sbin --sysconfdir=/etc/rancid --with-git --datarootdir=/usr/share && \
+     ./configure --prefix=/home/rancid --mandir=/usr/share/man --bindir=/usr/bin --sbindir=/usr/sbin --sysconfdir=/etc/rancid --datarootdir=/usr/share && \
      make install
 # setup sample config, default cron, 20 minute polling
 RUN cp /usr/share/rancid/rancid.conf.sample /etc/rancid && \
@@ -26,8 +26,6 @@ RUN touch /etc/aliases
 # Volume
 VOLUME /home/rancid
 VOLUME /etc/rancid
-VOLUME /etc/msmtprc
-VOLUME /etc/aliases
 # write README file
 # advise on git config/read from ENV and adjust accordingly
 # advise to add entry to GROUPS list in rancid.conf, run rancid-cvs as 'rancid' user to pre-create folders
