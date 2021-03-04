@@ -12,7 +12,10 @@ RUN  cd /usr/bin && ln -s aclocal aclocal-1.14 && ln -s automake automake-1.14 &
      chown -R rancid /home/rancid && \
      ./configure --prefix=/home/rancid --mandir=/usr/share/man --bindir=/usr/bin --sbindir=/usr/sbin --sysconfdir=/etc/rancid --datarootdir=/usr/share && \
      make install
-# setup sample config, default cron, 20 minute polling
+# 
+ADD https://github.com/just-containers/s6-overlay/releases/download/v2.2.0.1/s6-overlay-amd64-installer /tmp/
+RUN chmod +x /tmp/s6-overlay-amd64-installer && /tmp/s6-overlay-amd64-installer /
+#
 RUN cp /usr/share/rancid/rancid.conf.sample /etc/rancid && \
 # Cron every 4 hours
     echo '0 */4 * * * /usr/bin/rancid-run >/home/rancid/var/logs/cron.log 2>/home/rancid/var/logs/cron.err' > /etc/rancid/rancid.cron
