@@ -2,7 +2,9 @@ FROM alpine:latest
 RUN apk update
 RUN apk add --no-cache bash expect openssh-client perl-socket6 msmtp
 RUN adduser -D -s /bin/sh rancid
-RUN apk add --no-cache --virtual .builddeps build-base alpine-sdk autoconf automake gcc make 
+RUN apk add --no-cache --virtual .builddeps build-base alpine-sdk autoconf automake gcc make
+RUN mkdir /home/rancid
+RUN mkdir /etc/rancid
 RUN  cd /usr/bin && ln -s aclocal aclocal-1.14 && ln -s automake automake-1.14 && \
      cd /root && \
 # Downloading the lastest from UPSTREAM
